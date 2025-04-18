@@ -41,7 +41,6 @@ int main() {
   return 0;
 }
 
-// TODO: Setup shader class
 // TODO: Setup basic gameobject class to render a square plane
 // TODO: Setup Physics on basic game object
 // TODO: Setup Collision/Trigger on basic game object
