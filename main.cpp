@@ -41,6 +41,7 @@ int main() {
   return 0;
 }
 
-// TODO: Setup basic gameobject class to render a square plane
+// TODO: Square object class inheriting from game object to render square
+// TODO: Basic input processing
 // TODO: Setup Physics on basic game object
 // TODO: Setup Collision/Trigger on basic game object
