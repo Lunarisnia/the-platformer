@@ -3,7 +3,9 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-void framebuffer_size_callback(GLFWwindow *window, int width, int height) {}
+void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
+  glViewport(0, 0, width, height);
+}
 
 int main() {
   glfwInit();
@@ -38,3 +40,8 @@ int main() {
   }
   return 0;
 }
+
+// TODO: Setup shader class
+// TODO: Setup basic gameobject class to render a square plane
+// TODO: Setup Physics on basic game object
+// TODO: Setup Collision/Trigger on basic game object
