@@ -1,8 +1,13 @@
 #include "src/base/square.h"
+#include "src/input/input_manager.h"
 #include <glad/glad.h>
 // Force
 #include <GLFW/glfw3.h>
 #include <iostream>
+
+float deltaTime = 0.0f;
+float lastFrame = 0.0f;
+float currentFrame = 0.0f;
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
   glViewport(0, 0, width, height);
@@ -31,8 +36,16 @@ int main() {
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
   Square s{};
+  s.scale(glm::vec3(0.3f));
+
+  InputManager inputManager{window, s, deltaTime};
 
   while (!glfwWindowShouldClose(window)) {
+    currentFrame = (float)glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
+
+    inputManager.processInput();
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -45,7 +58,6 @@ int main() {
   return 0;
 }
 
-// TODO: Basic input processing
 // TODO: Setup Physics on basic game object
 // TODO: Setup Collision/Trigger on basic game object
 // TODO: Proper camera

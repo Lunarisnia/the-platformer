@@ -9,7 +9,7 @@ void GameObject::setActive(bool b) { isActive = b; }
 void GameObject::setName(std::string newName) { name = newName; }
 
 void GameObject::translate(glm::vec3 newPosition) {
-  transform.position += newPosition;
+  transform.position = newPosition;
   transformMatrix = glm::translate(transformMatrix, transform.position);
 }
 
