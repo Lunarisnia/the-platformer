@@ -9,8 +9,18 @@ void GameObject::setActive(bool b) { isActive = b; }
 void GameObject::setName(std::string newName) { name = newName; }
 
 void GameObject::translate(glm::vec3 newPosition) {
+  transform.position += newPosition;
+  transformMatrix = glm::translate(transformMatrix, transform.position);
+}
+
+void GameObject::setPosition(glm::vec3 newPosition) {
   transform.position = newPosition;
-  updateMatrix();
+  glm::mat4 newPosMat = glm::mat4(1.0f);
+  newPosMat = glm::translate(newPosMat, newPosition);
+
+  transformMatrix[3][0] = newPosMat[3][0];
+  transformMatrix[3][1] = newPosMat[3][1];
+  transformMatrix[3][2] = newPosMat[3][2];
 }
 
 void GameObject::rotate(glm::vec3 newRotation) {
@@ -18,13 +28,10 @@ void GameObject::rotate(glm::vec3 newRotation) {
   std::cout << "Unimplemented!" << std::endl;
 }
 
-void GameObject::scale(glm::vec3 newScale) { transform.scale = newScale; }
-
-void GameObject::updateMatrix() {
-  transformMatrix = glm::translate(transformMatrix, transform.position);
-  // TODO: Deal with rotation
+void GameObject::scale(glm::vec3 newScale) {
+  transform.scale = newScale;
   transformMatrix = glm::scale(transformMatrix, transform.scale);
-};
+}
 
 // NOTE: maybe separate the memory mapping for texture coordinate later?
 void GameObject::mapMemory(std::vector<float> vertices, unsigned int location,

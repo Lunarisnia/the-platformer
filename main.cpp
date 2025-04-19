@@ -48,3 +48,4 @@ int main() {
 // TODO: Basic input processing
 // TODO: Setup Physics on basic game object
 // TODO: Setup Collision/Trigger on basic game object
+// TODO: Proper camera

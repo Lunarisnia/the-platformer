@@ -14,14 +14,15 @@ struct Transform {
 };
 
 class GameObject {
-private:
-  glm::mat4 transformMatrix;
-  void updateMatrix();
-
 protected:
   unsigned int VAO, VBO;
   void mapMemory(std::vector<float> vertices, unsigned int location,
                  unsigned int dataSize, unsigned int stride, void *offset);
+
+  // NOTE: Maybe put it somewhere else?
+  glm::mat4 transformMatrix;
+  glm::mat4 projectionMatrix;
+  glm::mat4 viewMatrix;
 
 public:
   std::string name;
@@ -32,6 +33,7 @@ public:
   void setActive(bool b);
   void setName(std::string newName);
   void translate(glm::vec3 newPosition);
+  void setPosition(glm::vec3 newPosition);
   void rotate(glm::vec3 newRotation);
   void scale(glm::vec3 newScale);
   void render();
