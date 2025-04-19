@@ -25,3 +25,22 @@ void GameObject::updateMatrix() {
   // TODO: Deal with rotation
   transformMatrix = glm::scale(transformMatrix, transform.scale);
 };
+
+// NOTE: maybe separate the memory mapping for texture coordinate later?
+void GameObject::mapMemory(std::vector<float> vertices, unsigned int location,
+                           unsigned int dataSize, unsigned int stride,
+                           void *offset) {
+  glGenVertexArrays(1, &VAO);
+  glGenBuffers(1, &VBO);
+
+  glBindVertexArray(VAO);
+
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBufferData(GL_ARRAY_BUFFER, vertices.size() * dataSize * sizeof(float),
+               &vertices[0], GL_STATIC_DRAW);
+
+  glVertexAttribPointer(location, dataSize, GL_FLOAT, GL_FALSE, stride, offset);
+  glEnableVertexAttribArray(location);
+}
+
+void GameObject::render() {}

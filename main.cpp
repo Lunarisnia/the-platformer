@@ -1,3 +1,4 @@
+#include "src/base/square.h"
 #include <glad/glad.h>
 // Force
 #include <GLFW/glfw3.h>
@@ -29,11 +30,14 @@ int main() {
 
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+  Square s{};
+
   while (!glfwWindowShouldClose(window)) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     // Render code goes here
+    s.render();
 
     glfwSwapBuffers(window);
     glfwPollEvents();
@@ -41,7 +45,6 @@ int main() {
   return 0;
 }
 
-// TODO: Square object class inheriting from game object to render square
 // TODO: Basic input processing
 // TODO: Setup Physics on basic game object
 // TODO: Setup Collision/Trigger on basic game object

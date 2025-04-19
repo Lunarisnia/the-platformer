@@ -1,8 +1,10 @@
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
+#include <glad/glad.h>
 #include <glm/ext/matrix_transform.hpp>
 #include <iostream>
 #include <string>
+#include <vector>
 
 struct Transform {
   glm::vec3 position = glm::vec3(0.0f);
@@ -16,6 +18,11 @@ private:
   glm::mat4 transformMatrix;
   void updateMatrix();
 
+protected:
+  unsigned int VAO, VBO;
+  void mapMemory(std::vector<float> vertices, unsigned int location,
+                 unsigned int dataSize, unsigned int stride, void *offset);
+
 public:
   std::string name;
   Transform transform;
@@ -27,5 +34,6 @@ public:
   void translate(glm::vec3 newPosition);
   void rotate(glm::vec3 newRotation);
   void scale(glm::vec3 newScale);
+  void render();
 };
 #endif
