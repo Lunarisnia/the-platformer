@@ -1,5 +1,4 @@
 #include "src/base/game.h"
-#include "src/player/player.h"
 #include <glad/glad.h>
 // Force
 #include <GLFW/glfw3.h>
@@ -11,9 +10,19 @@ float currentFrame = 0.0f;
 
 float width = 800.0f;
 float height = 600.0f;
+Game game{width, height, deltaTime};
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
   glViewport(0, 0, width, height);
+}
+
+void key_callback(GLFWwindow *window, int key, int scancode, int action,
+                  int mods) {
+  if (key == GLFW_KEY_W && action == GLFW_PRESS) {
+    game.keys[key] = true;
+  } else if (action == GLFW_RELEASE) {
+    game.keys[key] = false;
+  }
 }
 
 int main() {
@@ -39,13 +48,16 @@ int main() {
 
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-  Game game{width, height, deltaTime};
+  glfwSetKeyCallback(window, key_callback);
+
   game.init();
 
   while (!glfwWindowShouldClose(window)) {
     currentFrame = (float)glfwGetTime();
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
+
+    game.processInput();
 
     game.update();
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -59,9 +71,7 @@ int main() {
   return 0;
 }
 
-// TODO: Decouple windowing logic sama game logic
-// TODO: Game class
-
 // TODO: Setup Physics on basic game object
+// TODO: Texture
 // TODO: Setup Collision/Trigger on basic game object
 // TODO: Proper camera

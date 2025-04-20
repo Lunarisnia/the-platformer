@@ -17,6 +17,6 @@ public:
 
   void update();
   void render();
-  void input(GLFWwindow *window, float &deltaTime);
+  void input(bool keys[], float &deltaTime);
 };
 #endif

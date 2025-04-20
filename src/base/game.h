@@ -10,6 +10,7 @@ class Game {
 public:
   float width, height;
   float &deltaTime;
+  bool keys[1024];
   GameState gameState;
   Game(float width, float height, float &deltaTime);
   ~Game();
@@ -19,5 +20,6 @@ public:
   void init();
   void update();
   void render();
+  void processInput();
 };
 #endif

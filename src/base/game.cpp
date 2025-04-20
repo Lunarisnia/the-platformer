@@ -12,17 +12,18 @@ void Game::init() {
       ResourceLoader::LoadShader("./shaders/vertex/default-vertex.vert",
                                  "./shaders/fragment/diffuse.frag");
   SpriteRenderer sr(defaultShader);
-  player = Player{"Hello"};
+  player = Player{"Player"};
   player.setSpriteRenderer(sr);
 }
 
 void Game::update() {
   // Core game logic
   player.update();
-  player.finish();
 }
 
 void Game::render() {
   // Core rendering logic
   player.render();
 }
+
+void Game::processInput() { player.input(keys, deltaTime); }
