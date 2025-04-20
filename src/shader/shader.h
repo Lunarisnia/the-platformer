@@ -15,6 +15,7 @@ public:
   // The program ID
   unsigned int ID;
 
+  Shader();
   // Constructor that reads and builds the shader
   Shader(const char *vertexPath, const char *fragmentPath);
   // Use/activate the shader

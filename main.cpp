@@ -41,8 +41,6 @@ int main() {
 
   Game game{width, height, deltaTime};
   game.init();
-  Shader s = Shader("./shaders/vertex/default-vertex.vert",
-                    "./shaders/fragment/diffuse.frag");
 
   while (!glfwWindowShouldClose(window)) {
     currentFrame = (float)glfwGetTime();

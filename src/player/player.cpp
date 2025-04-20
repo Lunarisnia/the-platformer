@@ -1,4 +1,5 @@
 #include "player.h"
+Player::Player() {};
 Player::Player(std::string name, Transform trans) : GameObject(name, trans) {}
 
 float timeStep = 1.0f / 60.0f;
@@ -37,8 +38,7 @@ void Player::input(GLFWwindow *window, float &deltaTime) {
 }
 
 void Player::render() {
-  material->use();
-  /*material->setMat4("model", );*/
+  spriteRenderer.render(transformMatrix, viewMatrix, projectionMatrix);
 }
 
-void Player::setMaterial(Shader *mat) { material = mat; }
+void Player::setSpriteRenderer(SpriteRenderer sr) { spriteRenderer = sr; }

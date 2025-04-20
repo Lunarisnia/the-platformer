@@ -1,5 +1,7 @@
 #include "shader.h"
 
+Shader::Shader() {}
+
 Shader::Shader(const char *vertexPath, const char *fragmentPath) {
   // 1. retrieve the vertex/fragment source code from filePath
   std::string vertexCode;
@@ -28,9 +30,6 @@ Shader::Shader(const char *vertexPath, const char *fragmentPath) {
   }
   const char *vShaderCode = vertexCode.c_str();
   const char *fShaderCode = fragmentCode.c_str();
-  std::cout << "VERTEX CODE: " << vShaderCode << std::endl;
-  std::cout << "============================" << std::endl;
-  std::cout << "FRAGMENT CODE: " << fShaderCode << std::endl;
 
   // Compile vertex shader
   unsigned int vertexShader;

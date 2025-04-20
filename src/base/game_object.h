@@ -17,10 +17,6 @@ struct Transform {
 
 class GameObject {
 protected:
-  unsigned int VAO, VBO;
-  void mapMemory(std::vector<float> vertices, unsigned int location,
-                 unsigned int dataSize, unsigned int stride, void *offset);
-
   // NOTE: Maybe put it somewhere else?
   glm::mat4 transformMatrix;
   glm::mat4 projectionMatrix;
