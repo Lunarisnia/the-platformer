@@ -9,7 +9,7 @@ void GameObject::setActive(bool b) { isActive = b; }
 void GameObject::setName(std::string newName) { name = newName; }
 
 void GameObject::translate(glm::vec3 newPosition) {
-  transform.position = newPosition;
+  transform.position += newPosition;
   transformMatrix = glm::translate(transformMatrix, transform.position);
 }
 
@@ -51,3 +51,9 @@ void GameObject::mapMemory(std::vector<float> vertices, unsigned int location,
 }
 
 void GameObject::render() {}
+
+void GameObject::update() {}
+
+void GameObject::finish() { setPosition(transform.position); }
+
+void GameObject::input(GLFWwindow *window, float &deltaTime) {}

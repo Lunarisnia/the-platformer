@@ -1,6 +1,8 @@
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 #include <glad/glad.h>
+// FORCE
+#include "GLFW/glfw3.h"
 #include <glm/ext/matrix_transform.hpp>
 #include <iostream>
 #include <string>
@@ -37,5 +39,9 @@ public:
   void rotate(glm::vec3 newRotation);
   void scale(glm::vec3 newScale);
   void render();
+
+  void update();
+  void finish();
+  void input(GLFWwindow *window, float &deltaTime);
 };
 #endif
