@@ -2,12 +2,19 @@
 
 SpriteRenderer::SpriteRenderer() {}
 
-SpriteRenderer::SpriteRenderer(Shader mat) : material(mat) {
+SpriteRenderer::SpriteRenderer(Shader mat, glm::mat4 view, glm::mat4 projection)
+    : material(mat), view(view), projection(projection) {
   mapMemory(vertices, 0, 3, 3 * sizeof(float), (void *)0);
 }
 
-void SpriteRenderer::render(glm::mat4 model, glm::mat4 view,
-                            glm::mat4 projection) {
+void SpriteRenderer::drawSprite(glm::vec2 position, glm::vec2 size) {
+  glm::mat4 model = glm::mat4(1.0f);
+  model = glm::translate(model, glm::vec3(position, 0.0f));
+
+  model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
+
+  model = glm::scale(model, glm::vec3(size, 1.0f));
+
   material.use();
   material.setMat4("model", model);
   material.setMat4("view", view);

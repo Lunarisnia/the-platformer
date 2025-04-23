@@ -1,9 +1,11 @@
 #ifndef GAME_H
 #define GAME_H
+#include "../collision/sat.h"
 #include "../player/player.h"
 #include "../resource/resource_loader.h"
 #include "../shader/shader.h"
 #include "../sprite_renderer/sprite_renderer.h"
+#include "game_object.h"
 enum GameState { GAME_MENU, GAME_PLAYING, GAME_WINNING, GAME_ENDING };
 
 class Game {
@@ -16,6 +18,7 @@ public:
   ~Game();
 
   Player player;
+  GameObject obj;
 
   void init();
   void update();

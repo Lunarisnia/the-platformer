@@ -3,6 +3,8 @@
 #include <glad/glad.h>
 // FORCE
 #include "GLFW/glfw3.h"
+#include "glm/ext/matrix_clip_space.hpp"
+#include "glm/ext/matrix_transform.hpp"
 #include <glm/ext/matrix_transform.hpp>
 #include <iostream>
 #include <string>
@@ -16,9 +18,8 @@ struct Transform {
 };
 
 class GameObject {
-protected:
-  // NOTE: Maybe put it somewhere else?
-  glm::mat4 transformMatrix;
+public:
+  // NOTE: Maybe put it somewhere else? since this is only for rendering
   glm::mat4 projectionMatrix;
   glm::mat4 viewMatrix;
 
@@ -36,6 +37,9 @@ public:
   void scale(glm::vec3 newScale);
   void render();
 
+  void debugTransform();
+
+  void init();
   void update();
   void finish();
   void input(GLFWwindow *window, float &deltaTime);

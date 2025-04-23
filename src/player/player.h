@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "../base/game_object.h"
+#include "../resource/resource_loader.h"
 #include "../shader/shader.h"
 #include "../sprite_renderer/sprite_renderer.h"
 #include "glm/ext/vector_float2.hpp"
@@ -15,7 +16,8 @@ public:
 
   void setSpriteRenderer(SpriteRenderer sr);
 
-  void update();
+  void init();
+  void update(float &deltaTime);
   void render();
   void input(bool keys[], float &deltaTime);
 };
